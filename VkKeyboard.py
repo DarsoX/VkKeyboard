@@ -7,7 +7,7 @@ vk = vk_api.VkApi(token = "TOKEN_GROUPS") #Тут вводим токен гру
 longpoll = VkBotLongPoll(vk, ID_GROUPS) #Тут вводим ID группы, ид группы должен быть числом. Без club или public
 upload = vk_api.VkUpload(vk) #Загрузка
 
-ID_GROUP = 'ID_GROUPS' #Ид Группы, должен быть строкой. Без club или public
+IDS_GROUP = 'IDS_GROUPS' #Ид Группы, должен быть строкой. Без club или public
 IDName_GROUP = 'КОРОТКОЕ ИМЯ' #КОРОТКОЕ ИМЯ ГРУППЫ/, должно быть строкой. Если нету, не трогаем.
 Name_GROUP = 'Название_Группы' #Название группы, в нижнем регистре.
 activ = 0 #АнтиФлуд
@@ -30,12 +30,12 @@ while True: #Цикл.
                 vk.method('messages.send', {'peer_id':event.obj.peer_id,'random_id': random.randint(0, 2**64), 'message': 'Клавиатура Открыта' ,'keyboard': sjson_dumps({**keyboard.keyboard, 'inline': True})}) #Отправляем сообщение и клавиатуру
 
             
-            if event.obj.text.lower() == '[club' +str(ID_GROUP) +'|@' +str(IDName_GROUP) +'] команда' or event.obj.text.lower() == '[club' +str(ID_GROUP) +'|'+str(Name_GROUP)+'] команда':
+            if event.obj.text.lower() == '[club' +str(IDS_GROUP) +'|@' +str(IDName_GROUP) +'] команда' or event.obj.text.lower() == '[club' +str(IDS_GROUP) +'|'+str(Name_GROUP)+'] команда':
                 if activ == 0: #Проверяет, обнулен ли наш АнтиФлуд
                 	activ = 1 #Активирует АнтиФлуд
                     vk.method('messages.send',{'peer_id':event.obj.peer_id,'message':'Ответ'}) #Отправляет ответ на вашу команду.    
 
-            if event.obj.text.lower() == '[club' +str(ID_GROUP) +'|@' +str(IDName_GROUP) +'] команда2' or event.obj.text.lower() == '[club' +str(ID_GROUP) +'|'+str(Name_GROUP)+'] команда2':
+            if event.obj.text.lower() == '[club' +str(IDS_GROUP) +'|@' +str(IDName_GROUP) +'] команда2' or event.obj.text.lower() == '[club' +str(IDS_GROUP) +'|'+str(Name_GROUP)+'] команда2':
                 if activ == 0: #Проверяет, обнулен ли наш АнтиФлуд
                 	activ = 1 #Активирует АнтиФлуд
                     vk.method('messages.send',{'peer_id':event.obj.peer_id,'message':'Ответ на вторую кнопку'}) #Отправляет ответ на вашу кнопку2.           
